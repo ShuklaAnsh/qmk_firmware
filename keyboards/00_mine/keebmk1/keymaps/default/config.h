@@ -25,9 +25,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define OLED_TIMEOUT 0
 
 // The pin connected to the data pin of the LEDs
-// #define WS2812_DI_PIN D7
+#define WS2812_DI_PIN D7
 // // The number of LEDs connected
-// #define RGB_MATRIX_LED_COUNT 70
+#define RGB_MATRIX_LED_COUNT 70
 
 #define EE_HANDS
 

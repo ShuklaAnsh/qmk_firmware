@@ -5,8 +5,8 @@
 # ENCODER_MAP_ENABLE = yes
 OLED_ENABLE = yes
 LTO_ENABLE = yes
-# RGB_MATRIX_ENABLE = yes		# Enable RGB keyboard backlight functionality
-# RGB_MATRIX_DRIVER = ws2812
+RGB_MATRIX_ENABLE = yes		# Enable RGB keyboard backlight functionality
+RGB_MATRIX_DRIVER = ws2812
 BOOTMAGIC_ENABLE = yes      # Enable Bootmagic Lite
 MOUSEKEY_ENABLE = yes       # Mouse keys
 EXTRAKEY_ENABLE = yes       # Audio control and System control
