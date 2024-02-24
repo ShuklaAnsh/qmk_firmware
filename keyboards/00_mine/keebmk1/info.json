@@ -3,6 +3,8 @@
     "manufacturer": "ansh",
     "url": "",
     "maintainer": "shuklaansh",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "usb": {
         "vid": "0x444D",
         "pid": "0x3536",
@@ -13,11 +15,46 @@
         "rows": ["F6", "F7", "B1", "B3", "B2", "B6"]
     },
     "diode_direction": "COL2ROW",
-    "split": {
-        "soft_serial_pin": "D2"
+
+    "features": {
+        "bootmagic": true,
+        "command": false,
+        "console": false,
+        "extrakey": true,
+        "mousekey": true,
+        "nkro": true,
+        "lto": true,
+        "audio": false,
+        "backlight": false,
+        "rgblight": false,
+        "split": true,
+        "rgb_matrix": true,
+        "oled": true,
+        "encoder": true
     },
-    "processor": "atmega32u4",
-    "bootloader": "caterina",
+    "encoder": {
+        "rotary": [
+            {"pin_a": "D5", "pin_b": "D5"}
+        ]
+    },
+    "oled": {
+        "enabled": true,
+        "timeout": 0
+    },
+    "split": {
+        "enabled": true,
+        "soft_serial_pin": "D2",
+        "handedness": {
+            "pin": "F4"
+        }
+    },
+    "rgb_matrix": {
+        "driver": "ws2812",
+        "led_count": 70
+    },
+    "ws2812": {
+        "pin": "D7"
+    },
     "layouts": {
         "LAYOUT_5x6": {
             "layout": [
