@@ -37,6 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define GRAVE_ESC_GUI_OVERRIDE	// Always send Escape if GUI is pressed
 #define GRAVE_ESC_SHIFT_OVERRIDE // Always send Escape if Shift is pressed
 
+// https://docs.qmk.fm/#/squeezing_avr?id=squeezing-the-most-out-of-avr
 // Undef Underglow animations to save space
 #undef RGBLIGHT_ANIMATIONS
 #undef RGBLIGHT_EFFECT_BREATHING
