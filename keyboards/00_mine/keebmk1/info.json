@@ -21,17 +21,17 @@
         "command": false,
         "console": false,
         "extrakey": true,
-        "mousekey": true,
+        "mousekey": false,
         "nkro": true,
         "lto": true,
         "audio": false,
         "backlight": false,
-        "rgblight": false,
+        // "rgblight": true,
         "split": true,
         "rgb_matrix": true,
         "oled": true,
         "encoder": true,
-        "wpm": false // true
+        "wpm": true
     },
     "encoder": {
         "rotary": [{ "pin_a": "B6", "pin_b": "B2" }]
