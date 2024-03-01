@@ -76,7 +76,6 @@ bool oled_task_kb(void) {
 #endif
 
 #ifdef RGB_MATRIX_ENABLE
-led_config_t g_led_config = {{{0, 1, 2, 3, 4}, {30, 29, 28, 27}, {31, 32, 33, 34}, {58, 57, 56, 55}, {59, NO_LED, 60, 61}}, {{0, 0}, {15, 0}, {30, 0}, {45, 0}, {60, 0}}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4}};
 
 void suspend_power_down_kb(void) {
     rgb_matrix_set_suspend_state(true);

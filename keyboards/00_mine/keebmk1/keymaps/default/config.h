@@ -37,11 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define GRAVE_ESC_GUI_OVERRIDE	// Always send Escape if GUI is pressed
 #define GRAVE_ESC_SHIFT_OVERRIDE // Always send Escape if Shift is pressed
 
-// https://docs.qmk.fm/#/squeezing_avr?id=squeezing-the-most-out-of-avr
-// Undef Underglow animations to save space
-#undef RGBLIGHT_ANIMATIONS
-
-#ifdef RGB_MATRIX_ENABLE
 // https://docs.qmk.fm/#/feature_rgb_matrix?id=rgb-matrix-effects
 #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
-#endif
+#define RGB_MATRIX_SOLID_REACTIVE_GRADIENT_MODE
+#define SPLIT_TRANSPORT_MIRROR
