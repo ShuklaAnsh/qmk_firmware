@@ -2,14 +2,14 @@
 #include <keebmk1.h>
 
 #ifdef BONGO_ENABLE
-#include "bongo.h"
+#    include "bongo.h"
 #endif
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [0] = { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  },
-    [1] = { ENCODER_CCW_CW(RGB_HUD, RGB_HUI),           ENCODER_CCW_CW(RGB_SAD, RGB_SAI)  },
-    [2] = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI),           ENCODER_CCW_CW(RGB_SPD, RGB_SPI)  },
+    [0] = {ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [1] = {ENCODER_CCW_CW(RGB_HUD, RGB_HUI), ENCODER_CCW_CW(RGB_SAD, RGB_SAI)},
+    [2] = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI), ENCODER_CCW_CW(RGB_SPD, RGB_SPI)},
 };
 #endif
 
@@ -51,7 +51,7 @@ static void render_status(void) {
 
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
-        render_status();  // Renders the current keyboard state (layer, lock, caps, scroll, etc)
+        render_status(); // Renders the current keyboard state (layer, lock, caps, scroll, etc)
     } else {
         return true;
     }
@@ -59,10 +59,11 @@ bool oled_task_user(void) {
     return false;
 }
 
-
 bool oled_task_kb(void) {
-    if (!oled_task_user()) { return false; }
-    if(!is_keyboard_master()) {
+    if (!oled_task_user()) {
+        return false;
+    }
+    if (!is_keyboard_master()) {
         // if (!oled_task_needs_to_repaint()) {
         //     return false;
         // }
@@ -75,31 +76,14 @@ bool oled_task_kb(void) {
 #endif
 
 #ifdef RGB_MATRIX_ENABLE
-led_config_t g_led_config = { {
-    { 0,  1,   2,   3,  4,  5  },
-    { 30,  29,   28,   27,  26 },
-    { 31,  32,   33,   34,  35 },
-    { 58,  57,   56,   55,  54 },
-    { 59,  NO_LED, 60,   61,  62 }
-}, {
-    { 0,   0 }, { 15,   0 }, { 30,   0 }, { 45,   0 }, { 60,   0 },
-    {  224,  16 }
-}, {
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1,
-    1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1,
-    1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-} };
+led_config_t g_led_config = {{{0, 1, 2, 3, 4}, {30, 29, 28, 27}, {31, 32, 33, 34}, {58, 57, 56, 55}, {59, NO_LED, 60, 61}}, {{0, 0}, {15, 0}, {30, 0}, {45, 0}, {60, 0}}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4}};
 
-void suspend_power_down_kb(void)
-{
+void suspend_power_down_kb(void) {
     rgb_matrix_set_suspend_state(true);
     suspend_power_down_user();
 }
 
-void suspend_wakeup_init_kb(void)
-{
+void suspend_wakeup_init_kb(void) {
     rgb_matrix_set_suspend_state(false);
     suspend_wakeup_init_user();
 }
