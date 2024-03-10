@@ -3,27 +3,25 @@
     "manufacturer": "ansh",
     "url": "",
     "maintainer": "shuklaansh",
-    "processor": "atmega32u4",
-    "bootloader": "caterina",
+    "board": "GENERIC_RP_RP2040",
+    "processor": "RP2040",
+    "bootloader": "rp2040",
     "usb": {
         "vid": "0x444D",
         "pid": "0x3536",
         "device_version": "0.0.1"
     },
     "matrix_pins": {
-        // cols:   9,    8,    7,    6,    5
-        "cols": ["B5", "B4", "E6", "D7", "C6"],
-        // rows:  A3,   A2,   A1,   A0,   15,   14
-        "rows": ["F4", "F5", "F6", "F7", "B1", "B3"]
+        "cols": ["GP11", "GP12", "GP13", "GP14", "GP15"],
+        "rows": ["GP26", "GP22", "GP21", "GP20", "GP19", "GP18"]
     },
     "diode_direction": "ROW2COL",
-
     "features": {
         "bootmagic": true,
         "command": false,
         "console": false,
         "extrakey": true,
-        "mousekey": false,
+        "mousekey": true,
         "nkro": true,
         "lto": true,
         "audio": false,
@@ -36,7 +34,7 @@
         "wpm": true
     },
     "encoder": {
-        "rotary": [{ "pin_a": "B6", "pin_b": "B2" }]
+        "rotary": [{ "pin_a": "GP17", "pin_b": "GP16" }]
     },
     "oled": {
         "enabled": true,
@@ -44,7 +42,10 @@
     },
     "split": {
         "enabled": true,
-        "soft_serial_pin": "D2"
+        "soft_serial_pin": "GP0",
+        "transport": {
+            "protocol": "serial_usart"
+        }
     },
     // "rgblight": {
     //     "led_count": 10
@@ -127,7 +128,8 @@
         ]
     },
     "ws2812": {
-        "pin": "D4"
+        "driver": "vendor",
+        "pin": "GP10"
     },
     "layouts": {
         "LAYOUT_5x5_4": {
