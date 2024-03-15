@@ -15,10 +15,10 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    if (is_keyboard_master()) {
+    if (is_keyboard_left()) {
         return OLED_ROTATION_90;
     }
-    return OLED_ROTATION_0;
+    return OLED_ROTATION_180;
 }
 
 static void render_status(void) {
@@ -40,7 +40,9 @@ static void render_status(void) {
             oled_write_ln_P(PSTR("???"), false);
     }
 
-    oled_write_ln_P(PSTR("boop"), false);
+    oled_write_ln_P(PSTR(
+        is_keyboard_left() ? "LEFT" : "RIGHT"
+    ), false);
 
     // Host Keyboard LED Status
     led_t led_state = host_keyboard_led_state();
@@ -50,7 +52,7 @@ static void render_status(void) {
 }
 
 bool oled_task_user(void) {
-    if (is_keyboard_master()) {
+    if (is_keyboard_left()) {
         render_status(); // Renders the current keyboard state (layer, lock, caps, scroll, etc)
     } else {
         return true;
@@ -63,7 +65,7 @@ bool oled_task_kb(void) {
     if (!oled_task_user()) {
         return false;
     }
-    if (!is_keyboard_master()) {
+    if (!is_keyboard_left()) {
         // if (!oled_task_needs_to_repaint()) {
         //     return false;
         // }
@@ -75,18 +77,67 @@ bool oled_task_kb(void) {
 
 #endif
 
-#ifdef RGB_MATRIX_ENABLE
+// #ifdef RGB_MATRIX_ENABLE
 
-void suspend_power_down_kb(void) {
-    rgb_matrix_set_suspend_state(true);
-    suspend_power_down_user();
-}
+// void suspend_power_down_kb(void) {
+//     rgb_matrix_set_suspend_state(true);
+//     suspend_power_down_user();
+// }
 
-void suspend_wakeup_init_kb(void) {
-    rgb_matrix_set_suspend_state(false);
-    suspend_wakeup_init_user();
-}
-#endif
+// void suspend_wakeup_init_kb(void) {
+//     rgb_matrix_set_suspend_state(false);
+//     suspend_wakeup_init_user();
+// }
+// #endif
+
+
+// LED Layout
+// Columns
+// 0   1   2   3   4    5   6   7   8   9
+
+// Physical (Center: 112)
+// 0  24  49  74  99    124 149 174 199 224
+//                                              Rows    Physical (Center: 32)
+// 4   3   2   1   0     26  27  28  29  30        0           0
+// 5   6   7   8   9     35  34  33  31  31        1          12
+// 14  13  12  11  10    36  37  38  39  40        2          25
+// 15  16  17  18  19    45  44  43  42  41        3          38
+// 25  24  23  20            46  49  50  51        4          51
+//             22  21    47  48                    5          64
+
+led_config_t g_led_config = { {
+// Key Matrix to LED Index
+  // Left Hand
+  { 4, 3, 2, 1, 0},
+  { 5, 6, 7, 8, 9 },
+  { 14, 13, 12, 11, 10 },
+  { 15, 16, 17, 18, 19 },
+  { 25, 24, 23, 20, NO_LED },
+  { NO_LED, NO_LED, NO_LED, 22, 21 },
+  // Right Hand
+  { 26, 27, 28, 29, 30},
+  { 35, 34, 33, 32, 31 },
+  { 36, 37, 38, 39, 40 },
+  { 45, 44, 43, 42, 41 },
+  { NO_LED, 46, 49, 50, 51 },
+  { 47, 48, NO_LED, NO_LED, NO_LED },
+}, {
+  // LED Index to Physical Position
+  // Left Hand
+{ 0, 0} , { 0, 12} , { 0, 25} , { 0, 38} , { 0, 51} ,
+{ 24, 0} , { 24, 12} , { 24, 25} , { 24, 38} , { 24, 51} ,
+{ 49, 0} , { 49, 12} , { 49, 25} , { 49, 38} , { 49, 51} ,
+{ 74, 0} , { 74, 12} , { 74, 25} , { 74, 38} , { 74, 51} , { 74, 64} ,
+{ 99, 0} , { 99, 12} , { 99, 25} , { 99, 38} , { 99, 64} ,
+{ 124, 0} , { 124, 12} , { 124, 25} , { 124, 38} , { 124, 64} ,
+{ 149, 0} , { 149, 12} , { 149, 25} , { 149, 38} , { 149, 51} , { 149, 64} ,
+{ 174, 0} , { 174, 12} , { 174, 25} , { 174, 38} , { 174, 51} ,
+{ 199, 0} , { 199, 12} , { 199, 25} , { 199, 38} , { 199, 51} ,
+{ 224, 0} , { 224, 12} , { 224, 25} , { 224, 38} , { 224, 51} ,
+}, {
+  // LED Index to Flag
+  4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4
+} };
 
 // bool led_update_kb(led_t led_state) {
 //     bool res = led_update_user(led_state);

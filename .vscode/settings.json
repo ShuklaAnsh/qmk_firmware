@@ -15,6 +15,7 @@
         "*.inc": "c",
         "*.cpp": "cpp",
         "*.hpp": "cpp",
+        "info.json": "jsonc",
         "xstddef": "c",
         "type_traits": "c",
         "utility": "c",

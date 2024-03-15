@@ -20,8 +20,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                                         KC_Y       , KC_U  , KC_I    ,  KC_O    ,  KC_P    ,
                                                                                                         KC_H       , KC_J  , KC_K    ,  KC_L    ,  KC_SCLN ,
                                                                                                         KC_N       , KC_M  , KC_COMM ,  KC_DOT  ,  KC_SLSH ,
-                                                                                        ENC_RIGHT , KC_ENTER  , KC_RIGHT_GUI    ,  KC_RIGHT_ALT    ,  KC_RIGHT_SHIFT    ,
-                                                                                        LOWER     , KC_SPACE
+                                                                                        KC_EXCLAIM , KC_ENTER  , KC_RIGHT_GUI    ,  KC_RIGHT_ALT    ,  KC_RIGHT_SHIFT    ,
+                                                                                        KC_COMMA     , KC_SPACE
     )//,
 
     // [_LOWER] = LAYOUT_5x5_4(

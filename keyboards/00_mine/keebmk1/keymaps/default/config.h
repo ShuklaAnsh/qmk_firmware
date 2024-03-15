@@ -17,6 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#define EE_HANDS
+
 #define OLED_TIMEOUT 0
 
 #define KINETIC_SPEED
@@ -33,6 +35,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // https://docs.qmk.fm/#/feature_rgb_matrix?id=rgb-matrix-effects
 #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
 #define RGB_MATRIX_SOLID_REACTIVE_GRADIENT_MODE
+
+#define RGB_MATRIX_LED_COUNT 52
 #define SPLIT_TRANSPORT_MIRROR
 
 // RP2040 Defines
@@ -56,3 +60,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define UART_DRIVER	SIOD0
 // #define UART_TX_PIN	GP0
 // #define UART_RX_PIN	GP1
+#define BOOTMAGIC_ROW_RIGHT 6
+#define BOOTMAGIC_COLUMN_RIGHT 4
