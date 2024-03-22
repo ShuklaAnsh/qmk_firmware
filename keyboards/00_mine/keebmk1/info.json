@@ -7,8 +7,8 @@
     "processor": "RP2040",
     "bootloader": "rp2040",
     "usb": {
-        "vid": "0x444D",
-        "pid": "0x3536",
+        "vid": "0x1B39",
+        "pid": "0x14D4",
         "device_version": "0.0.1"
     },
     "matrix_pins": {

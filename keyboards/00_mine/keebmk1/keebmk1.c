@@ -36,7 +36,16 @@ static void render_status(void) {
             oled_write_P(PSTR("RIFN\n"), false);
             break;
         case LAYER_COMBINED_FN:
-            oled_write_P(PSTR("RIFN\n"), false);
+            oled_write_P(PSTR("COMB\n"), false);
+            break;
+        case LAYER_ENC_LEFT:
+            oled_write_P(PSTR("ENCL\n"), false);
+            break;
+        case LAYER_ENC_RIGHT:
+            oled_write_P(PSTR("ENCR\n"), false);
+            break;
+        case LAYER_DEBUG:
+            oled_write_P(PSTR("DEBUG\n"), false);
             break;
         default:
             // Or use the write_ln shortcut over adding '\n' to the end of your string
@@ -132,6 +141,7 @@ led_config_t g_led_config = { {
 { 49, 0} , { 49, 12} , { 49, 25} , { 49, 38} , { 49, 51} ,
 { 74, 0} , { 74, 12} , { 74, 25} , { 74, 38} , { 74, 51} , { 74, 64} ,
 { 99, 0} , { 99, 12} , { 99, 25} , { 99, 38} , { 99, 64} ,
+// Right
 { 124, 0} , { 124, 12} , { 124, 25} , { 124, 38} , { 124, 64} ,
 { 149, 0} , { 149, 12} , { 149, 25} , { 149, 38} , { 149, 51} , { 149, 64} ,
 { 174, 0} , { 174, 12} , { 174, 25} , { 174, 38} , { 174, 51} ,

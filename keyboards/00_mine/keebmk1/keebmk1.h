@@ -6,5 +6,6 @@
 #define LAYER_COMBINED_FN 3
 #define LAYER_ENC_LEFT 4
 #define LAYER_ENC_RIGHT 5
+#define LAYER_DEBUG 6
 
 #define BONGO_ENABLE
