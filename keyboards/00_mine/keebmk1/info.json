@@ -39,16 +39,6 @@
         "enabled": true,
         "timeout": 0
     },
-    "split": {
-        "enabled": true,
-        "soft_serial_pin": "GP0",
-        "transport": {
-            "protocol": "serial_usart"
-        }
-    },
-    // "rgblight": {
-    //     "led_count": 10
-    // },
     "rgb_matrix": {
         "driver": "ws2812",
         "split_count": [26, 26],

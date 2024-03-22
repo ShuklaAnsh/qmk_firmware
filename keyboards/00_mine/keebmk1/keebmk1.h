@@ -1,10 +1,10 @@
 #pragma once
 
-#define _QWERTY 0
-#define _LOWER 1
-#define _RAISE 2
-#define _FN 3
-#define _ENC_LEFT 4
-#define _ENC_RIGHT 5
+#define LAYER_BASE 0
+#define LAYER_LEFT_FN 1
+#define LAYER_RIGHT_FN 2
+#define LAYER_COMBINED_FN 3
+#define LAYER_ENC_LEFT 4
+#define LAYER_ENC_RIGHT 5
 
 #define BONGO_ENABLE

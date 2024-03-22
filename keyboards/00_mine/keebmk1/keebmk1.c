@@ -16,7 +16,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     if (is_keyboard_left()) {
-        return OLED_ROTATION_90;
+        return OLED_ROTATION_270;
     }
     return OLED_ROTATION_180;
 }
@@ -26,14 +26,17 @@ static void render_status(void) {
     oled_write_ln_P(PSTR("-----"), false);
 
     switch (get_highest_layer(layer_state)) {
-        case _QWERTY:
-            oled_write_P(PSTR("ABC\n"), false);
+        case LAYER_BASE:
+            oled_write_P(PSTR("BASE\n"), false);
             break;
-        case _LOWER:
-            oled_write_P(PSTR("LOW\n"), false);
+        case LAYER_LEFT_FN:
+            oled_write_P(PSTR("LEFN\n"), false);
             break;
-        case _RAISE:
-            oled_write_P(PSTR("RSE\n"), false);
+        case LAYER_RIGHT_FN:
+            oled_write_P(PSTR("RIFN\n"), false);
+            break;
+        case LAYER_COMBINED_FN:
+            oled_write_P(PSTR("RIFN\n"), false);
             break;
         default:
             // Or use the write_ln shortcut over adding '\n' to the end of your string
