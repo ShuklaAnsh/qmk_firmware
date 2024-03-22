@@ -27,40 +27,38 @@ static void render_status(void) {
 
     switch (get_highest_layer(layer_state)) {
         case LAYER_BASE:
-            oled_write_P(PSTR("BASE\n"), false);
+            oled_write_ln_P(PSTR("BASE"), false);
             break;
         case LAYER_LEFT_FN:
-            oled_write_P(PSTR("LEFN\n"), false);
+            oled_write_ln_P(PSTR("LEFN"), false);
             break;
         case LAYER_RIGHT_FN:
-            oled_write_P(PSTR("RIFN\n"), false);
+            oled_write_ln_P(PSTR("RIFN"), false);
             break;
         case LAYER_COMBINED_FN:
-            oled_write_P(PSTR("COMB\n"), false);
+            oled_write_ln_P(PSTR("COMB"), false);
             break;
         case LAYER_ENC_LEFT:
-            oled_write_P(PSTR("ENCL\n"), false);
+            oled_write_ln_P(PSTR("ENCL"), false);
             break;
         case LAYER_ENC_RIGHT:
-            oled_write_P(PSTR("ENCR\n"), false);
+            oled_write_ln_P(PSTR("ENCR"), false);
             break;
         case LAYER_DEBUG:
-            oled_write_P(PSTR("DEBUG\n"), false);
+            oled_write_ln_P(PSTR("DEBUG"), false);
             break;
         default:
             // Or use the write_ln shortcut over adding '\n' to the end of your string
             oled_write_ln_P(PSTR("???"), false);
     }
+    oled_write_ln_P(PSTR("\n-----"), false);
 
-    oled_write_ln_P(PSTR(
-        is_keyboard_left() ? "LEFT" : "RIGHT"
-    ), false);
 
     // Host Keyboard LED Status
     led_t led_state = host_keyboard_led_state();
-    oled_write_P(led_state.num_lock ? PSTR("NUM ") : PSTR("    "), false);
-    oled_write_P(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
-    oled_write_P(led_state.scroll_lock ? PSTR("SCR ") : PSTR("    "), false);
+    oled_write_ln_P(led_state.num_lock ? PSTR("NUM ") : PSTR(""), false);
+    oled_write_ln_P(led_state.caps_lock ? PSTR("CAP ") : PSTR(""), false);
+    oled_write_ln_P(led_state.scroll_lock ? PSTR("SCR ") : PSTR(""), false);
 }
 
 bool oled_task_user(void) {
@@ -89,18 +87,18 @@ bool oled_task_kb(void) {
 
 #endif
 
-// #ifdef RGB_MATRIX_ENABLE
+#ifdef RGB_MATRIX_ENABLE
 
-// void suspend_power_down_kb(void) {
-//     rgb_matrix_set_suspend_state(true);
-//     suspend_power_down_user();
-// }
+void suspend_power_down_kb(void) {
+    rgb_matrix_set_suspend_state(true);
+    suspend_power_down_user();
+}
 
-// void suspend_wakeup_init_kb(void) {
-//     rgb_matrix_set_suspend_state(false);
-//     suspend_wakeup_init_user();
-// }
-// #endif
+void suspend_wakeup_init_kb(void) {
+    rgb_matrix_set_suspend_state(false);
+    suspend_wakeup_init_user();
+}
+#endif
 
 
 // LED Layout
@@ -152,17 +150,5 @@ led_config_t g_led_config = { {
   4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4
 } };
 
-// bool led_update_kb(led_t led_state) {
-//     bool res = led_update_user(led_state);
-//     if(res) {
-//         // writePin sets the pin high for 1 and low for 0.
-//         // In this example the pins are inverted, setting
-//         // it low/0 turns it on, and high/1 turns the LED off.
-//         // This behavior depends on whether the LED is between the pin
-//         // and VCC or the pin and GND.
-//         writePin(B2, !led_state.num_lock);
-//         writePin(C6, !led_state.caps_lock);
-//         writePin(B7, !led_state.scroll_lock);
-//     }
-//     return res;
-// }
+
+

@@ -138,3 +138,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 };
+
+bool rgb_matrix_indicators_user(void) {
+    led_t state = host_keyboard_led_state();
+    if(state.caps_lock) {
+        HSV hsv = {200, 200, 180};
+        RGB rgb = hsv_to_rgb(hsv);
+        rgb_matrix_set_color(4, rgb.r, rgb.g, rgb.b);
+    }
+
+    return true;
+}
