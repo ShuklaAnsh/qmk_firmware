@@ -9,3 +9,20 @@
 #define LAYER_DEBUG 6
 
 #define BONGO_ENABLE
+
+enum oled_modes {
+  OLED_DEFAULT,
+  OLED_OFF,
+  OLED_BONGO,
+  _NUM_OLED_MODES
+};
+
+// OLED Behavior
+extern uint8_t oled_mode;
+extern bool oled_repaint_requested;
+extern bool oled_wakeup_requested;
+extern uint32_t oled_sleep_timer;
+
+void oled_request_wakeup(void);
+void oled_request_repaint(void);
+bool oled_task_needs_to_repaint(void);
