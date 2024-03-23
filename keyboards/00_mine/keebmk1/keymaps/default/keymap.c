@@ -12,18 +12,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // LEFT
         KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,
         KC_Q  , KC_W  , KC_F  , KC_P  , KC_B  ,
-        KC_A  , KC_R  , KC_S  , KC_T  , KC_G  ,
+        LCTL_T(KC_A)  , LALT_T(KC_R)  , LGUI_T(KC_S)  , LSFT_T(KC_T)  , KC_G  ,
         LSFT_T(KC_Z)  , KC_X  , KC_C  , KC_D  , KC_V  ,
                     LCTL_T(KC_LEFT_CTRL)  , LALT_T(KC_LEFT_ALT)  ,
-                                                         KC_ENTER , KC_SPACE, LT(ENC_LEFT, _______),
-                                                                        LGUI_T(KC_LEFT_GUI) , LEFT_FN ,
+                                                         KC_ENTER , LT(LEFT_FN, KC_SPACE), LT(ENC_LEFT, KC_MUTE),
+                                                                        LEFT_FN, KC_LEFT_GUI ,
         // RIGHT
                                                                                                         KC_6       , KC_7  , KC_8    ,  KC_9    ,  KC_0    ,
                                                                                                         KC_J       , KC_L  , KC_U    ,  KC_Y    ,  KC_SEMICOLON    ,
-                                                                                                        KC_M       , KC_N  , KC_E    ,  KC_I    ,  KC_O ,
+                                                                                                        KC_M       , RSFT_T(KC_N)  , RGUI_T(KC_E)    ,  RALT_T(KC_I)    ,  RCTL_T(KC_O),
                                                                                                         KC_K       , KC_H , KC_COMM ,  KC_DOT  ,  RSFT_T(KC_SLSH) ,
-                                            LT(ENC_RIGHT, KC_MUTE) , KC_SPACE, KC_ENTER  ,  RALT_T(KC_RIGHT_ALT)    ,  RCTL_T(KC_RIGHT_CTRL) ,
-                                            RIGHT_FN   , KC_RIGHT_GUI
+                                            LT(ENC_RIGHT, KC_MUTE) , LT(RIGHT_FN, KC_SPACE), KC_ENTER  ,  RALT_T(KC_RIGHT_ALT)    ,  RCTL_T(KC_RIGHT_CTRL) ,
+                                            KC_RIGHT_GUI, RIGHT_FN
     ),
 
     [LAYER_LEFT_FN] = LAYOUT_5x5_4(
@@ -40,8 +40,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                                         _______    , _______    , _______    ,  _______    ,  KC_BACKSLASH ,
                                                                                                         _______    , _______    , _______    ,  _______    ,  _______ ,
                                                                                                         _______    , _______    , _______    ,  _______    ,  _______ ,
-                                                                                          _______ , _______    , _______ ,  _______  ,  _______  ,
-                                                                                          COMBINED_FN , _______
+                                                                                          _______ , COMBINED_FN    , _______ ,  _______  ,  _______  ,
+                                                                                          _______ , _______
     ),
 
 
@@ -52,8 +52,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_CAPS  , _______  , _______  , _______  , _______  ,
         _______  , _______  , _______  , _______  , _______  ,
                     _______  , _______  ,
-                                                        _______ , _______ , _______ ,
-                                                                        _______ , COMBINED_FN ,
+                                                        _______ , COMBINED_FN , _______ ,
+                                                                     _______ , _______ ,
         // RIGHT
                                                                                                         _______    , _______  , _______  ,  _______  ,  KC_DELETE  ,
                                                                                                         _______    , _______    , _______    ,  KC_LEFT_BRACKET    ,  KC_RIGHT_BRACKET ,
