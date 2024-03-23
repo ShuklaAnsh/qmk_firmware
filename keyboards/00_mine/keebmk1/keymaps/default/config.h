@@ -17,9 +17,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define EE_HANDS
+#define SPLIT_HAND_PIN GP21
 
-// #define OLED_TIMEOUT 0
+#define OLED_TIMEOUT 45000
+#define OLED_FADE_OUT
+#define OLED_FADE_OUT_INTERVAL 5
 
 #define KINETIC_SPEED
 
