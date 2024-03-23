@@ -16,9 +16,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 #ifdef OLED_ENABLE
 
 layer_state_t layer_state_set_kb(layer_state_t state) {
-  layer_state_t state = layer_state_set_user(state);
   oled_request_wakeup();
-  return state;
+  return layer_state_set_user(state);
 }
 
 void matrix_init_kb(void) {
@@ -72,6 +71,9 @@ static void render_status(void) {
             break;
         case LAYER_DEBUG:
             oled_write_ln_P(PSTR("DEBUG"), false);
+            break;
+        case LAYER_QWERTY:
+            oled_write_ln_P(PSTR("QWERT"), false);
             break;
         default:
             // Or use the write_ln shortcut over adding '\n' to the end of your string
