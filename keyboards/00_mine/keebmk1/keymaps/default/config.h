@@ -29,11 +29,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
 
-// #define GRAVE_ESC_ALT_OVERRIDE	// Always send Escape if Alt is pressed
-// #define GRAVE_ESC_CTRL_OVERRIDE	// Always send Escape if Control is pressed
-// #define GRAVE_ESC_GUI_OVERRIDE	// Always send Escape if GUI is pressed
-// #define GRAVE_ESC_SHIFT_OVERRIDE // Always send Escape if Shift is pressed
-
 // https://docs.qmk.fm/#/feature_rgb_matrix?id=rgb-matrix-effects
 #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
 #define RGB_MATRIX_SOLID_REACTIVE_GRADIENT_MODE
@@ -51,7 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // https://docs.qmk.fm/#/feature_pointing_device?id=split-keyboard-configuration
 // #define SPLIT_POINTING_ENABLE
 
-
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 
 // RP2040 Defines
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET // Activates the double-tap behavior

@@ -3,9 +3,9 @@
 
 #define ENC_LEFT MO(LAYER_ENC_LEFT)
 #define ENC_RIGHT MO(LAYER_ENC_RIGHT)
-#define RIGHT_FN MO(LAYER_RIGHT_FN)
-#define LEFT_FN MO(LAYER_LEFT_FN)
-#define COMBINED_FN MO(LAYER_COMBINED_FN)
+#define RIGHT_FN MO(LAYER_FN_RIGHT)
+#define LEFT_FN MO(LAYER_FN_LEFT)
+#define COMBINED_FN MO(LAYER_FN_COMBINED)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_BASE] = LAYOUT_5x5_4(
@@ -19,7 +19,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                         LEFT_FN, KC_LEFT_GUI ,
         // RIGHT
                                                                                                         KC_6       , KC_7  , KC_8    ,  KC_9    ,  KC_0    ,
-                                                                                                        KC_J       , KC_L  , KC_U    ,  KC_Y    ,  KC_SEMICOLON    ,
+                                                                                                        KC_J       , KC_L  , KC_U    ,  KC_Y    ,  KC_QUOTE    ,
                                                                                                         KC_M       , RSFT_T(KC_N)  , RGUI_T(KC_E)    ,  RALT_T(KC_I)    ,  RCTL_T(KC_O),
                                                                                                         KC_K       , KC_H , KC_COMM ,  KC_DOT  ,  RSFT_T(KC_SLSH) ,
                                             LT(ENC_RIGHT, KC_MUTE) , LT(RIGHT_FN, KC_SPACE), KC_ENTER  ,  RALT_T(KC_RIGHT_ALT)    ,  RCTL_T(KC_RIGHT_CTRL) ,
@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             _______, _______
     ),
 
-    [LAYER_LEFT_FN] = LAYOUT_5x5_4(
+    [LAYER_FN_LEFT] = LAYOUT_5x5_4(
         // LEFT
         KC_ESC  , _______  , _______  , _______  , _______  ,
         KC_TAB  , _______  , _______  , _______  , _______  ,
@@ -63,10 +63,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
 
-    [LAYER_RIGHT_FN] = LAYOUT_5x5_4(
+    [LAYER_FN_RIGHT] = LAYOUT_5x5_4(
         // LEFT
         KC_GRAVE  , _______  , _______  , _______  , _______  ,
-        _______  , _______  , _______  , _______  , _______  ,
+        KC_TAB  , _______  , _______  , _______  , _______  ,
         _______  , _______  , _______  , _______  , _______  ,
         _______  , _______  , _______  , _______  , _______  ,
                     _______  , _______  ,
@@ -75,13 +75,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // RIGHT
                                                                                                         _______    , _______  , KC_MINUS  ,  KC_EQUAL  ,  KC_BACKSPACE  ,
                                                                                                         _______    , _______    , KC_LEFT_BRACKET    ,  KC_RIGHT_BRACKET , KC_BACKSLASH ,
-                                                                                                        _______    , _______    , _______    ,  _______    ,  KC_QUOTE ,
+                                                                                                        _______    , _______    , _______    ,  _______    ,  KC_SEMICOLON ,
                                                                                                         _______    , _______    , _______    ,  _______    ,  _______ ,
                                                                                           _______ , _______    , _______ ,  _______  ,  _______  ,
                                                                                           _______ , _______
     ),
 
-    [LAYER_COMBINED_FN] = LAYOUT_5x5_4(
+    [LAYER_FN_COMBINED] = LAYOUT_5x5_4(
         // LEFT
         KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,
         _______  , _______  , _______  , _______  , _______  ,
@@ -155,9 +155,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 
+#if defined(ENCODER_MAP_ENABLE)
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
+    [LAYER_BASE] = {ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [LAYER_QWERTY]  = {ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [LAYER_FN_LEFT]  = {ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [LAYER_FN_RIGHT]  = {ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [LAYER_FN_COMBINED]  = {ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [LAYER_ENC_LEFT]  = {ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [LAYER_ENC_RIGHT]  = {ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [LAYER_DEBUG]  = {ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)}
+};
+#endif
+
 bool rgb_matrix_indicators_user(void) {
     led_t state = host_keyboard_led_state();
-    if(state.caps_lock) {
+    if(state.caps_lock || is_caps_word_on()) {
         HSV hsv = {200, 200, 180};
         RGB rgb = hsv_to_rgb(hsv);
         rgb_matrix_set_color(4, rgb.r, rgb.g, rgb.b);

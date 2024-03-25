@@ -5,14 +5,6 @@
 #    include "bongo.h"
 #endif
 
-#if defined(ENCODER_MAP_ENABLE)
-const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [_QWERTY] = {ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_LOWER]  = {ENCODER_CCW_CW(RGB_HUD, RGB_HUI), ENCODER_CCW_CW(RGB_SAD, RGB_SAI)},
-    [_RAISE]  = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI), ENCODER_CCW_CW(RGB_SPD, RGB_SPI)},
-};
-#endif
-
 #ifdef OLED_ENABLE
 
 layer_state_t layer_state_set_kb(layer_state_t state) {
@@ -54,13 +46,13 @@ static void render_status(void) {
         case LAYER_BASE:
             oled_write_ln_P(PSTR("BASE"), false);
             break;
-        case LAYER_LEFT_FN:
+        case LAYER_FN_LEFT:
             oled_write_ln_P(PSTR("LEFN"), false);
             break;
-        case LAYER_RIGHT_FN:
+        case LAYER_FN_RIGHT:
             oled_write_ln_P(PSTR("RIFN"), false);
             break;
-        case LAYER_COMBINED_FN:
+        case LAYER_FN_COMBINED:
             oled_write_ln_P(PSTR("COMB"), false);
             break;
         case LAYER_ENC_LEFT:
