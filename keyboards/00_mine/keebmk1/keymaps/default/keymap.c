@@ -15,7 +15,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         LCTL_T(KC_A)  , LALT_T(KC_R)  , LGUI_T(KC_S)  , LSFT_T(KC_T)  , KC_G  ,
         LSFT_T(KC_Z)  , KC_X  , KC_C  , KC_D  , KC_V  ,
                     LCTL_T(KC_LEFT_CTRL)  , LALT_T(KC_LEFT_ALT)  ,
-                                                         KC_ENTER , LT(LEFT_FN, KC_SPACE), LT(ENC_LEFT, KC_MUTE),
+                                                         KC_ENTER , LT(LEFT_FN, KC_SPACE), LT(ENC_LEFT, KC_MS_BTN3),
                                                                         LEFT_FN, KC_LEFT_GUI ,
         // RIGHT
                                                                                                         KC_6       , KC_7  , KC_8    ,  KC_9    ,  KC_0    ,
@@ -66,9 +66,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_FN_RIGHT] = LAYOUT_5x5_4(
         // LEFT
         KC_GRAVE  , _______  , _______  , _______  , _______  ,
-        KC_TAB  , _______  , _______  , _______  , _______  ,
-        _______  , _______  , _______  , _______  , _______  ,
-        _______  , _______  , _______  , _______  , _______  ,
+        KC_TAB  , KC_MS_BTN1  , KC_MS_UP  , KC_MS_BTN2  , KC_MS_ACCEL0  ,
+        _______  , KC_MS_LEFT  , KC_MS_DOWN  , KC_MS_RIGHT  , KC_MS_ACCEL1  ,
+        _______  , KC_MS_BTN3  , KC_MS_WH_LEFT  , KC_MS_WH_RIGHT  , KC_MS_ACCEL2  ,
                     _______  , _______  ,
                                                         _______ , COMBINED_FN , _______ ,
                                                                      _______ , _______ ,
@@ -84,10 +84,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_FN_COMBINED] = LAYOUT_5x5_4(
         // LEFT
         KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,
-        _______  , _______  , _______  , _______  , _______  ,
-        _______  , _______  , _______  , _______  , _______ ,
-        _______  , _______  , _______  , _______  , _______  ,
-                    _______  , _______  ,
+        KC_KP_SLASH  , KC_KP_7  , KC_KP_8  , KC_KP_9  , KC_KP_ASTERISK  ,
+        KC_KP_MINUS  , LALT_T(KC_KP_4)  , LGUI_T(KC_KP_5)  , LSFT_T(KC_KP_6)  , KC_KP_PLUS ,
+        KC_KP_EQUAL  ,  KC_KP_1  , KC_KP_2  , KC_KP_3  , _______  ,
+                    _______  , KC_KP_0  ,
                                                         _______ , _______ , _______ ,
                                                                         _______ , _______ ,
         // RIGHT
@@ -138,7 +138,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         [LAYER_DEBUG] = LAYOUT_5x5_4(
         // LEFT
-        QK_BOOTLOADER  , QK_REBOOT  , QK_CLEAR_EEPROM , _______  , _______  ,
+        QK_BOOTLOADER  , QK_REBOOT  , QK_CLEAR_EEPROM , _______  , RGB_TOG  ,
         QK_DEBUG_TOGGLE  , _______  , _______  , _______  , _______  ,
         _______  , _______  , _______  , _______  , _______  ,
         TT(LAYER_QWERTY), _______  , _______  , _______  , _______  ,
@@ -146,7 +146,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         _______ , _______ , TT(LAYER_BASE) ,
                                                                         _______ , TT(LAYER_BASE) ,
         // RIGHT
-                                                                                                        _______    , _______  , QK_CLEAR_EEPROM  ,  QK_REBOOT  ,  QK_BOOTLOADER  ,
+                                                                                                        RGB_TOG    , _______  , QK_CLEAR_EEPROM  ,  QK_REBOOT  ,  QK_BOOTLOADER  ,
                                                                                                         _______    , _______    , _______    ,  _______    ,  QK_DEBUG_TOGGLE ,
                                                                                                         _______    , _______    , _______    ,  _______    ,  _______ ,
                                                                                                         _______    , _______    , _______    ,  _______    ,  TT(LAYER_QWERTY) ,

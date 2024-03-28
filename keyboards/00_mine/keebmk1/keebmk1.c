@@ -1,6 +1,5 @@
 #include QMK_KEYBOARD_H
 #include <keebmk1.h>
-
 #ifdef BONGO_ENABLE
 #    include "bongo.h"
 #endif
@@ -68,7 +67,6 @@ static void render_status(void) {
             oled_write_ln_P(PSTR("QWERT"), false);
             break;
         default:
-            // Or use the write_ln shortcut over adding '\n' to the end of your string
             oled_write_ln_P(PSTR("???"), false);
     }
     oled_write_ln_P(PSTR("\n-----"), false);
@@ -122,6 +120,7 @@ bool oled_task_needs_to_repaint(void) {
         oled_wakeup_requested = false;
         oled_repaint_requested = false;
         oled_off();
+        dprintf("OLED_OFF\n");
         return false;
     }
 
@@ -131,6 +130,7 @@ bool oled_task_needs_to_repaint(void) {
         oled_repaint_requested = false;
         oled_sleep_timer = timer_read32() + OLED_TIMEOUT;
         oled_on();
+        dprintf("oled_wakeup_requested\n");
         return true;
     }
 
@@ -138,21 +138,24 @@ bool oled_task_needs_to_repaint(void) {
     // sleep timer.
     if (oled_repaint_requested) {
         oled_repaint_requested = false;
+        dprintf("oled_repaint_requested\n");
         return true;
     }
 
     // If the OLED is currently off, skip the repaint (which would turn the
     // OLED on if the image is changed in any way).
     if (!is_oled_on()) {
+        dprintf("!is_oled_on\n");
         return false;
     }
 
     // If the sleep timer has expired while the OLED was on, turn the OLED off.
     if (timer_expired32(timer_read32(), oled_sleep_timer)) {
+        dprintf("oled_off\n");
         oled_off();
         return false;
     }
-
+    dprintf("oled_task_needs_to_repaint\n");
     // Always perform a repaint if the OLED is currently on.  (This can
     // potentially be optimized to avoid unneeded repaints if all possible
     // state changes are covered by oled_request_repaint() or
