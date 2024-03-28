@@ -15,7 +15,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         LCTL_T(KC_A)  , LALT_T(KC_R)  , LGUI_T(KC_S)  , LSFT_T(KC_T)  , KC_G  ,
         LSFT_T(KC_Z)  , KC_X  , KC_C  , KC_D  , KC_V  ,
                     LCTL_T(KC_LEFT_CTRL)  , LALT_T(KC_LEFT_ALT)  ,
-                                                         KC_ENTER , LT(LEFT_FN, KC_SPACE), LT(ENC_LEFT, KC_MS_BTN3),
+                                                         KC_ENTER , LT(LEFT_FN, KC_SPACE), KC_MS_BTN3,
                                                                         LEFT_FN, KC_LEFT_GUI ,
         // RIGHT
                                                                                                         KC_6       , KC_7  , KC_8    ,  KC_9    ,  KC_0    ,
@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_CAPS  , _______  , _______  , _______ , _______  ,
         _______  , _______  , _______  , _______  , _______  ,
                     _______  , _______  ,
-                                                        _______ , _______ ,  _______,
+                                                        _______ , _______ ,  ENC_LEFT,
                                                                         _______ , _______ ,
         // RIGHT
                                                                                                         _______    , _______  , KC_MINUS  ,  KC_EQUAL  ,  KC_DELETE ,
